@@ -3,6 +3,7 @@ import { Restaurant } from './restaurant.model';
 
 @Component({
   selector: 'add-restaurant',
+  inputs: ['specialties'],
   outputs: ['onSubmit'],
   template: `
   <div>
@@ -11,9 +12,7 @@ import { Restaurant } from './restaurant.model';
     <input placeholder="Name" #newName>
     <label>Restaurant Specialty</label>
     <select #newSpecialty>
-      <option value="Burgers">Burgers</option>
-      <option value="Pizza">Pizza</option>
-      <option value="Sushi">Sushi</option>
+      <option *ngFor="#currentSpecialty of specialties" value="{{ currentSpecialty }}">{{ currentSpecialty}}</option>
     </select>
     <label>Restaurant Address</label>
     <input placeholder="Address" #newAddress>
@@ -26,6 +25,7 @@ import { Restaurant } from './restaurant.model';
 
 export class AddRestaurantComponent {
   public onSubmit: EventEmitter<any[]>;
+  public specialties: string[];
   constructor(){
     this.onSubmit = new EventEmitter();
   }

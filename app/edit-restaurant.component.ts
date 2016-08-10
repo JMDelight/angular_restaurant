@@ -3,16 +3,14 @@ import { Restaurant } from './restaurant.model';
 
 @Component({
   selector: 'edit-restaurant',
-  inputs: ['restaurant'],
+  inputs: ['restaurant', 'specialties'],
   template: `
   <h3>Edit Restaurant Details</h3>
   <label>Change Name</label>
   <input [(ngModel)]="restaurant.name">
   <label>Change Specialty</label>
   <select [(ngModel)]="restaurant.specialty">
-    <option value="Burgers">Burgers</option>
-    <option value="Pizza">Pizza</option>
-    <option value="Sushi">Sushi</option>
+    <option *ngFor="#currentSpecialty of specialties" value="{{ currentSpecialty }}">{{ currentSpecialty}}</option>
   </select>
   <label>Change Address</label>
   <input [(ngModel)]="restaurant.address">
@@ -26,12 +24,13 @@ import { Restaurant } from './restaurant.model';
     <option>4</option>
     <option>5</option>
   </select>
-  <button (click)="addReview(newRating)"></button>
+  <button (click)="addReview(newRating)">Rate</button>
   `
 })
 
 export class EditRestaurantComponent {
   public restaurant: Restaurant;
+  public specialties: string[];
 
   addReview(newReview: HTMLInputElement) {
     this.restaurant.rating.push(parseInt(newReview.value));

@@ -9,8 +9,6 @@ import {Restaurant} from './restaurant.model';
 export class SpecialtyPipe implements PipeTransform {
   transform(input: Restaurant[], args) {
     var desiredSpecialtyState = args[0];
-    console.log("In Specialty Pipe");
-    console.log(desiredSpecialtyState);
     if(desiredSpecialtyState === "all") {
       return input;
     } else {
