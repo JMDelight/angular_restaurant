@@ -10,7 +10,11 @@ import { Restaurant } from './restaurant.model';
     <label>Restaurant Name</label>
     <input placeholder="Name" #newName>
     <label>Restaurant Specialty</label>
-    <input placeholder="Specialty" #newSpecialty>
+    <select #newSpecialty>
+      <option value="Burgers">Burgers</option>
+      <option value="Pizza">Pizza</option>
+      <option value="Sushi">Sushi</option>
+    </select>
     <label>Restaurant Address</label>
     <input placeholder="Address" #newAddress>
     <label>Restaurant Price</label>

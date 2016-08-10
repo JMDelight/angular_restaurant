@@ -9,7 +9,11 @@ import { Restaurant } from './restaurant.model';
   <label>Change Name</label>
   <input [(ngModel)]="restaurant.name">
   <label>Change Specialty</label>
-  <input [(ngModel)]="restaurant.specialty">
+  <select [(ngModel)]="restaurant.specialty">
+    <option value="Burgers">Burgers</option>
+    <option value="Pizza">Pizza</option>
+    <option value="Sushi">Sushi</option>
+  </select>
   <label>Change Address</label>
   <input [(ngModel)]="restaurant.address">
   <label>Change Price</label>
@@ -35,8 +39,8 @@ export class EditRestaurantComponent {
     this.restaurant.rating.forEach(function(rating) {
       totalRatings += rating;
     })
-    this.restaurant.averageRating = (totalRatings / this.restaurant.rating.length).toString();
-    this.restaurant.averageRating = this.restaurant.averageRating.slice(0,3) + " out of 5 stars with " + this.restaurant.rating.length.toString() + " reviews.";
+    this.restaurant.averageRatingFloat = parseFloat((totalRatings / this.restaurant.rating.length).toString().slice(0, 4))
+    this.restaurant.averageRating = this.restaurant.averageRatingFloat.toString() + " out of 5 stars with " + this.restaurant.rating.length.toString() + " reviews.";
     console.log(newReview.value);
   }
 }
