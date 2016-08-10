@@ -22,11 +22,7 @@ import { DeleteRestaurantComponent } from './delete-restaurant.component'
       <edit-restaurant *ngIf="selectedRestaurant" [restaurant]="selectedRestaurant" [specialties]="specialties"></edit-restaurant>
       <delete-restaurant *ngIf="selectedRestaurant" [restaurant]="selectedRestaurant" [restaurants]="restaurants"></delete-restaurant>
       <add-restaurant (onSubmit)="createRestaurant($event)" [specialties]="specialties"></add-restaurant>
-      <form>
-        <label>Add new Specialty</label>
-        <input #newSpecialty required>
-        <button (click)="addSpecialty(newSpecialty)">Go</button>
-      </form>
+
     </div>
   `
 })
@@ -48,9 +44,5 @@ export class RestaurantListComponent {
   onSpecialtyChange(filterOption) {
     this.specialtyProperty = filterOption;
   }
-  addSpecialty(specialty: HTMLInputElement) {
-    // if (!this.specialties.includes(specialty.value)) {
-      this.specialties.push(specialty.value);
-    // }
-  }
+  
 }

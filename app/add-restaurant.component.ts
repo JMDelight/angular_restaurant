@@ -19,6 +19,11 @@ import { Restaurant } from './restaurant.model';
     <label>Restaurant Price</label>
     <input type="number" min=0.5 max=5 step=0.5 placeholder="$" #newPrice>
     <button (click)="addRestaurant(newName, newSpecialty, newAddress, newPrice)">Add</button>
+    <form>
+      <label>Add new Specialty</label>
+      <input #addNewSpecialty>
+      <button (click)="addSpecialty(addNewSpecialty)">Go</button>
+    </form>
   </div>
   `
 })
@@ -39,5 +44,11 @@ export class AddRestaurantComponent {
     newAddress.value = '';
     console.log(newPrice.value);
     newPrice.value = '';
+  }
+  addSpecialty(specialty: HTMLInputElement) {
+    if (!this.specialties.includes(specialty.value)) {
+      this.specialties.push(specialty.value);
+      specialty.value = "";
+    }
   }
 }

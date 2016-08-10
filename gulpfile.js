@@ -31,7 +31,24 @@ var shell = require('gulp-shell');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 
+gulp.task("minifyScripts", ["jsBrowserify"], function(){
+  return gulp.src("./build/js/app.js")
+    .pipe(uglify())
+    .pipe(gulp.dest("./build/js"));
+});
 
+gulp.task('jsBrowserify', ['concatInterface'], function() {
+  return browserify({ entries: ['./tmp/allConcat.js'] })
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(gulp.dest('./build/js'));
+});
+
+gulp.task('concatInterface', function() {
+  return gulp.src(['./js/*-interface.js'])
+    .pipe(concat('allConcat.js'))
+    .pipe(gulp.dest('./tmp'));
+});
 
 ////////////////////// TYPESCRIPT //////////////////////
 

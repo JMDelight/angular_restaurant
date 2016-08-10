@@ -19,9 +19,11 @@ export class DeleteRestaurantComponent {
 
   }
   deleteRestaurant() {
-    this.restaurants.splice(this.restaurant.id, 1)
-    for (var i: number = this.restaurant.id; i < this.restaurants.length; i++) {
-      this.restaurants[i].id = i;
+    if (this.restaurants.includes(this.restaurant)) {
+      this.restaurants.splice(this.restaurant.id, 1)
+      for (var i: number = this.restaurant.id; i < this.restaurants.length; i++) {
+        this.restaurants[i].id = i;
+      }
     }
   }
 }
