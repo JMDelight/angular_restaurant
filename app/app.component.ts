@@ -1,21 +1,24 @@
 
 import { Component } from 'angular2/core';
 import { Restaurant } from './restaurant.model';
-import { RestaurantComponent } from './restaurant.component';
+import { RestaurantListComponent } from './restaurant-list.component';
 
 @Component({
   selector: 'my-app',
-  directives: [RestaurantComponent],
+  directives: [RestaurantListComponent],
   template: `
     <div class="container">
-      <h1>This is the Restaurant List component</h1>
-      <restaurant-display [restaurant]="restaurant"></restaurant-display>
+      <restaurant-list [restaurants]="restaurants"></restaurant-list>
     </div>
   `
 })
 export class AppComponent {
   public restaurants: Restaurant[];
-  public restaurant: Restaurant =  new Restaurant('Bobs', 'Burgers', '111 1st Street', 3, 1 );
   constructor(){
+    this.restaurants = [
+      new Restaurant('Bobs', 'Burgers', '111 1st Street', 3, 0 ),
+      new Restaurant('Pizza Hog', 'Pizza', '131 3rd Street', 2, 1 ),
+      new Restaurant('Pasta Planet', 'Sushi', '14 23st Street', 5, 2 )
+    ]
   }
 }
