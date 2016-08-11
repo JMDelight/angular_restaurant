@@ -41,7 +41,7 @@ export class CssControlComponent {
           document.getElementById('body-id').style["color"] = newColor;
           this.backgroundBoolean = true;
         }
-      }, 250 );
+      }, 1000 );
   }
 
 }

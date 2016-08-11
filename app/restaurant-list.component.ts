@@ -15,6 +15,7 @@ import { CssControlComponent } from './css-control.component';
   pipes: [SpecialtyPipe, TopFivePipe],
   template: `
     <div class="container">
+      <css-control></css-control>
       <div class="row">
         <div class="col-md-12">
           <h1 class="page-header">These are the Restaurants</h1>
@@ -24,7 +25,6 @@ import { CssControlComponent } from './css-control.component';
           </select>
           <select (change)="selectFiveChange($event.target.value)">
             <option value="topFive">Top Five</option>
-            <option value="this">Show None</option>
             <option value="all" selected="selected">Show All</option>
           </select>
         </div>
@@ -84,7 +84,7 @@ export class RestaurantListComponent {
     } else if (parameter === "rating") {
       this.restaurants.sort((a, b): number => {
         sortTimes ++;
-        if (a.averageRating < b.averageRating) {
+        if (a.averageRatingFloat < b.averageRatingFloat) {
           return 1;
         } else if (a.price > b.price) {
           return -1;
