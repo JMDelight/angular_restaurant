@@ -31,25 +31,6 @@ var shell = require('gulp-shell');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 
-gulp.task("minifyScripts", ["jsBrowserify"], function(){
-  return gulp.src("./build/js/app.js")
-    .pipe(uglify())
-    .pipe(gulp.dest("./build/js"));
-});
-
-gulp.task('jsBrowserify', ['concatInterface'], function() {
-  return browserify({ entries: ['./tmp/allConcat.js'] })
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./build/js'));
-});
-
-gulp.task('concatInterface', function() {
-  return gulp.src(['./js/*-interface.js'])
-    .pipe(concat('allConcat.js'))
-    .pipe(gulp.dest('./tmp'));
-});
-
 ////////////////////// TYPESCRIPT //////////////////////
 
 // clean task
@@ -95,11 +76,11 @@ gulp.task('bower', ['jsBower', 'cssBower']);
 ////////////////////// SASS //////////////////////
 
 gulp.task('sassBuild', function() {
-  return gulp.src(['./scss/*'])
+  return gulp.src(['resources/styles/*'])
     .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./scss'));
+    .pipe(gulp.dest('./build/css'));
 });
 
 ////////////////////// SERVER //////////////////////
@@ -113,7 +94,7 @@ gulp.task('serve', function() {
   });
   gulp.watch(['resources/js/*.js'], ['jsBuild']); // vanilla js changes, reload.
   gulp.watch(['*.html'], ['htmlBuild']); // html changes, reload.
-  gulp.watch(['resources/styles/*.css', './scss/*.scss'], ['cssBuild']); // css or sass changes, concatenate all css/sass, build, reload.
+  gulp.watch(['resources/styles/*.css', 'resources/styles/*.scss'], ['cssBuild']); // css or sass changes, concatenate all css/sass, build, reload.
   gulp.watch(['app/*.ts'], ['tsBuild']); // typescript files change, compile then reload.
 });
 
