@@ -19,8 +19,14 @@ export class AppComponent {
     this.restaurants = [
       new Restaurant('Bobs', 'Burgers', '111 1st Street', 3, 0 ),
       new Restaurant('Pizza Hog', 'Pizza', '131 3rd Street', 2, 1 ),
-      new Restaurant('Pasta Planet', 'Sushi', '14 23st Street', 5, 2 )
+      new Restaurant('Pasta Planet', 'Sushi', '14 23st Street', 5, 2 ),
+      new Restaurant('Gravy Train', 'Gravy', '131 6st Street', 3, 3 ),
+      new Restaurant('Noodle Farm', 'Pie', '136 12th Street', 2, 4 ),
+      new Restaurant('Original Wafer', 'Pizza', '1414 29th Street', 5, 5 ),
+      new Restaurant('Pattys Pattys', 'Burgers', '3411 56th Street', 3, 6 ),
+      new Restaurant('Sludge Master', 'Gravy', '138 12th Street', 2, 7 ),
+      new Restaurant('On a Roll', 'Sushi', '234 28th Street', 5, 8 )
     ];
-    this.specialties = ['Burgers', 'Pizza', 'Sushi'];
+    this.specialties = ['Burgers', 'Pizza', 'Sushi', 'Gravy', 'Pie'];
   }
 }

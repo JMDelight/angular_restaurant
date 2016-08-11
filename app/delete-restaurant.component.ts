@@ -1,9 +1,10 @@
-import { Component } from 'angular2/core';
+import { Component, EventEmitter } from 'angular2/core';
 import { Restaurant } from './restaurant.model';
 
 @Component({
   selector: 'delete-restaurant',
   inputs: ['restaurant', 'restaurants'],
+  outputs: ['onSubmit'],
   template: `
   <div>
     <h3>Delete Restaurant</h3>
@@ -13,17 +14,19 @@ import { Restaurant } from './restaurant.model';
 })
 
 export class DeleteRestaurantComponent {
+  public onSubmit: EventEmitter<string>;
+
   public restaurant: Restaurant
   public restaurants: Restaurant[]
   constructor(){
-
+    this.onSubmit = new EventEmitter();
   }
   deleteRestaurant() {
-    if (this.restaurants.includes(this.restaurant)) {
-      this.restaurants.splice(this.restaurant.id, 1)
-      for (var i: number = this.restaurant.id; i < this.restaurants.length; i++) {
-        this.restaurants[i].id = i;
-      }
+    this.restaurants.splice(this.restaurant.id, 1)
+    for (var i: number = this.restaurant.id; i < this.restaurants.length; i++) {
+      this.restaurants[i].id = i;
     }
+    this.onSubmit.emit("Hi");
   }
+
 }

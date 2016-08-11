@@ -46,7 +46,13 @@ export class AddRestaurantComponent {
     newPrice.value = '';
   }
   addSpecialty(specialty: HTMLInputElement) {
-    if (!this.specialties.includes(specialty.value)) {
+    var arrayIncludes: boolean = false;
+    for( var i: number = 0; i < this.specialties.length; i ++) {
+      if (this.specialties[i] === specialty.value) {
+        arrayIncludes = true;
+      }
+    }
+    if (!arrayIncludes) {
       this.specialties.push(specialty.value);
       specialty.value = "";
     }

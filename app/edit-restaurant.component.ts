@@ -42,4 +42,6 @@ export class EditRestaurantComponent {
     this.restaurant.averageRating = this.restaurant.averageRatingFloat.toString() + " out of 5 stars with " + this.restaurant.rating.length.toString() + " reviews.";
     console.log(newReview.value);
   }
+
+
 }
