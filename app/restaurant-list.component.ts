@@ -31,7 +31,8 @@ import { TopFivePipe } from './top-five.pipe';
 
     </div>
 
-    <button (click)="sortMethod()">Sort Me</button>
+    <button (click)="sortMethod('price')">Sort By Price</button>
+    <button (click)="sortMethod('rating')">Sort By Rating</button>
   `
 })
 export class RestaurantListComponent {
@@ -60,17 +61,29 @@ export class RestaurantListComponent {
     this.selectFiveProperty = filterOption;
     console.log(this.selectFiveProperty);
   }
-  sortMethod() {
+  sortMethod(parameter) {
     console.log("Sorting");
-    this.restaurants.sort((a, b): number => {
-      if (a.price < b.price) {
-        return -1;
-      } else if (a.price > b.price) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
+    if (parameter === "price") {
+      this.restaurants.sort((a, b): number => {
+        if (a.price < b.price) {
+          return -1;
+        } else if (a.price > b.price) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    } else if (parameter === "rating") {
+      this.restaurants.sort((a, b): number => {
+        if (a.averageRating < b.averageRating) {
+          return 1;
+        } else if (a.price > b.price) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+    }
     for (var i: number = 0; i < this.restaurants.length; i++) {
       this.restaurants[i].id = i;
     }

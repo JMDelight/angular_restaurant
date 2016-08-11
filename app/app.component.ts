@@ -23,10 +23,22 @@ export class AppComponent {
       new Restaurant('Gravy Train', 'Gravy', '131 6st Street', 3, 3 ),
       new Restaurant('Noodle Farm', 'Pie', '136 12th Street', 2, 4 ),
       new Restaurant('Original Wafer', 'Pizza', '1414 29th Street', 5, 5 ),
-      new Restaurant('Pattys Pattys', 'Burgers', '3411 56th Street', 3, 6 ),
+      new Restaurant('Patty\'s Pattys', 'Burgers', '3411 56th Street', 3, 6 ),
       new Restaurant('Sludge Master', 'Gravy', '138 12th Street', 2, 7 ),
       new Restaurant('On a Roll', 'Sushi', '234 28th Street', 5, 8 )
     ];
+    for(var i: number = 0; i < this.restaurants.length; i++) {
+      var ratingAmount: number = Math.floor((Math.random() * 4) + 3);
+      for(var j: number = 0; j < ratingAmount; j++) {
+        this.restaurants[i].rating.push(Math.floor((Math.random() * 4) + 2));
+      }
+      var totalRatings: number = 0;
+      this.restaurants[i].rating.forEach(function(rating) {
+        totalRatings += rating;
+      })
+      this.restaurants[i].averageRatingFloat = parseFloat((totalRatings / this.restaurants[i].rating.length).toString().slice(0, 4))
+      this.restaurants[i].averageRating = this.restaurants[i].averageRatingFloat.toString() + " out of 5 stars with " + this.restaurants[i].rating.length.toString() + " reviews.";
+    }
     this.specialties = ['Burgers', 'Pizza', 'Sushi', 'Gravy', 'Pie'];
   }
 }
